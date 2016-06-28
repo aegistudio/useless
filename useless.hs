@@ -1,3 +1,12 @@
+module Useless.Base (
+	bi,
+	pop,
+	popt,
+	popTail,
+	tmap,
+	Useless.Base.and,
+	Useless.Base.or) where 
+
 -- we are likely to seperate something from
 -- a structure, where a bi-function is ideal.
 bi l r f x = f (l x) (r x)
@@ -21,3 +30,5 @@ tmap = bi fst snd
 -- or a `or` b, like me.
 and a b = if a then b else False
 or a b = if a then True else b
+
+
