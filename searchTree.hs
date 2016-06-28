@@ -11,11 +11,13 @@ import Useless.Base
 searchDriver :: Ord a => [a] -> [(Int, Int)] -> Int -> a -> Bool
 searchDriver [] [] current tofind = False
 searchDriver node offspring current tofind 
-	| (value == tofind) = True
-	| (value > tofind) && (lidx <  0) = False
-	| (value > tofind) && (lidx >= 0) = searchDriverIdx lidx
-	| (value < tofind) && (ridx <  0) = False
-	| (value < tofind) && (ridx >= 0) = searchDriverIdx ridx
+	| value == tofind = True
+	| value > tofind =
+		if lidx < 0 then False
+		else searchDriverIdx lidx
+	| value < tofind = 
+		if ridx <  0 then False
+		else searchDriverIdx ridx
 	| otherwise = False where 
 		value = node !! current;
 		lidx = fst $ offspring !! current;
